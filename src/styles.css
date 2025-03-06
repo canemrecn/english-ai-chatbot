@@ -1,0 +1,196 @@
+/* Sayfanın genel düzeni */
+html, body, #root {
+    height: 100%; /* Sayfanın tamamını kaplasın */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f4f4; /* Açık gri arka plan */
+    overflow: hidden; /* Sayfa kaymasını engelle */
+}
+
+/* Sayfanın üçe bölünmesi */
+.home-container {
+    display: flex;
+    flex-direction: row; /* Yan yana üç sütun olsun */
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* Sol ve sağ bileşenlerin (resimlerin) boyutları */
+.left, .right {
+    width: 25%; /* Sol ve sağ bileşenlerin genişliği */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Bileşenlerin tamamını kaplasın */
+}
+
+.side-image {
+    width: 100%; /* Genişliği tamamen kaplasın */
+    height: 100vh; /* Yüksekliği tamamen kaplasın */
+    object-fit: cover; /* Resmi kırpmadan alanı kaplamasını sağlar */
+    border-radius: 0; /* Köşeleri yuvarlak olmasın */
+}
+
+/* Ortadaki sohbet bileşeni */
+.center {
+    width: 50%; /* Sohbet bileşeninin genişliği */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh; /* Sayfanın tamamını kaplasın */
+    background: rgba(179, 176, 176, 0.13);
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    max-width: 100%; /* Genişliği tamamen kaplasın */
+    background: rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative; /* Sabitleme için */
+}
+
+/* Dropdown kontroller (En üstte sabit) */
+.controls {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid #ddd;
+    z-index: 10;
+    width: 100%;
+}
+
+/* Mesajları içeren orta alan */
+.messages {
+    flex: 1; /* Sayfanın kalanını kaplar */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto; /* İçerik fazla olursa kaydırma çubuğu ekler */
+    padding: 20px;
+    width: 100%;
+    max-width: 80%; /* Daha geniş alan sağlamak için genişlik artırıldı */
+    height: 100%; /* Tüm yüksekliği kaplasın */
+    max-height: calc(100vh - 150px); /* Üst ve alt sabit elementlere göre dinamik yükseklik */
+    background: rgba(0, 0, 0, 0);
+}
+
+/* Mesajların animasyonla yüklenmesi */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.messages p {
+    animation: fadeIn 0.3s ease-in-out;
+    padding: 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* Kullanıcının mesajları için stil */
+.messages .user {
+    align-self: flex-end;
+    background: #DCF8C6;
+    border-radius: 15px 15px 0px 15px;
+    padding: 10px 15px;
+    background: rgba(0, 252, 13, 0.315);
+}
+
+/* Asistanın mesajları için stil */
+.messages .ai {
+    align-self: flex-start;
+    background: #EAEAEA;
+    border-radius: 15px 15px 15px 0px;
+    padding: 10px 15px;
+    background: rgba(19, 2, 255, 0.315);
+}
+
+/* Giriş alanı ve butonlar (Sayfanın en altına sabit) */
+.input-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: white;
+    border-top: 1px solid #ddd;
+    z-index: 10;
+    width: 100%;
+    background: rgba(0, 0, 0, 0);
+}
+
+/* Metin giriş kutusu */
+input {
+    flex: 1;
+    padding: 10px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: rgba(151, 151, 151, 0.164);
+}
+
+/* Butonlar */
+button, .btn {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 15px;
+    background: rgba(151, 151, 151, 0.164);
+}
+/* Dropdown Butonu */
+.dropdown-toggle {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background: rgba(151, 151, 151, 0.2);
+    color: #000000;
+    height: 25px;
+}
+
+/* Dropdown Hover */
+.dropdown-toggle:hover {
+    background: rgba(38, 0, 255, 0.3);
+    color: #000000;
+}
+
+.control-text {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0px 100px; /* Yazının sağ ve solunda boşluk bırakır */
+    color: #333; /* Yazı rengini koyu yapar */
+    text-align: center;
+}
